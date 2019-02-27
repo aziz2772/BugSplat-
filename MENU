@@ -1,0 +1,183 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_image.h>
+void main()
+
+{
+
+    SDL_Surface *ecran = NULL, *image = NULL, *play = NULL,*option = NULL,*credit = NULL,*quit = NULL;
+
+  
+
+
+
+    SDL_Rect positionFond,positionClic,positionoption,positioncredit,positionquit;
+
+    positionFond.x = 0;
+    positionFond.y = 0;
+
+positionClic.x=640;
+positionClic.y=150;
+
+positionoption.x=640;
+positionoption.y=220;
+
+positioncredit.x=640;
+positioncredit.y=290;
+
+positionquit.x=640;
+positionquit.y=360;
+
+ ecran = SDL_SetVideoMode(920, 644, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+image= IMG_Load("vierge.png");
+option= IMG_Load("option 1.png");
+play= IMG_Load("play 2.png");
+credit=IMG_Load("credit 1.png");
+quit=IMG_Load("quit 1.png");
+option2= IMG_Load("option 2.png");
+play2= IMG_Load("play 1.png");
+credit2=IMG_Load("credit 2.png");
+quit2=IMG_Load("quit 2.png");
+SDL_BlitSurface(image, NULL, ecran, &positionFond);
+SDL_BlitSurface(play, NULL, ecran, &positionClic);
+SDL_BlitSurface(option, NULL, ecran, &positionoption);
+SDL_BlitSurface(credit, NULL, ecran, &positioncredit);
+SDL_BlitSurface(quit, NULL, ecran, &positionquit);
+
+        SDL_Flip(ecran);
+
+    SDL_Init(SDL_INIT_EVERYTHING);
+
+    
+   // ecran = SDL_SetVideoMode(900, 644, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+
+
+    int i=1,x=1;
+
+    int continuer = 1;
+    //bool done;
+    SDL_Event event;
+   
+    while (continuer)
+    {
+        x=0;
+        SDL_WaitEvent(&event);
+switch(event.type)
+        {
+        case SDL_QUIT:
+            continuer = 0;
+            break;
+ case SDL_KEYDOWN:
+
+            switch(event.key.keysym.sym)
+
+            {
+
+            case SDLK_UP:
+
+                if (i==1)
+                    i=4;
+
+                else
+
+
+                    i--;
+                break;
+
+            case SDLK_DOWN:
+
+
+                if(i==4)
+                    i=1;
+
+                else
+
+
+
+                    i++;
+                break;
+
+            }
+
+        if(i==1)
+        {
+            play= IMG_Load("play 2.png");
+option= IMG_Load("option 1.png");
+quit = IMG_Load("quit 1.png");
+credit = IMG_Load("credit 1.png");
+
+        }
+
+        if(i==2)
+        {
+play= IMG_Load("play 1.png");
+
+quit = IMG_Load("quit 1.png");
+credit = IMG_Load("credit 1.png");
+            option= IMG_Load("option 2.png");
+
+        }
+        if(i==4)
+        {
+play= IMG_Load("play 1.png");
+
+
+credit = IMG_Load("credit 1.png");
+            option= IMG_Load("option 1.png");
+            quit = IMG_Load("quit 2.png");
+
+        }
+        if(i==3)
+        {
+play= IMG_Load("play 1.png");
+
+
+
+            option= IMG_Load("option 1.png");
+            quit = IMG_Load("quit 1.png");
+
+            credit = IMG_Load("credit 2.png");
+
+
+        }
+}
+
+
+
+        //les images des boutons
+
+        
+
+        SDL_BlitSurface(image, NULL, ecran, &positionFond);
+SDL_BlitSurface(play, NULL, ecran, &positionClic);
+SDL_BlitSurface(option, NULL, ecran, &positionoption);
+SDL_BlitSurface(credit, NULL, ecran, &positioncredit);
+SDL_BlitSurface(quit, NULL, ecran, &positionquit);
+
+        SDL_Flip(ecran);
+
+
+        //aprés apuis des boutons
+
+        }
+        
+        
+
+    SDL_FreeSurface(image);
+    SDL_FreeSurface(play);
+SDL_FreeSurface(option);
+  SDL_FreeSurface(credit);
+ SDL_FreeSurface(quit);
+
+   
+   
+    
+  
+    SDL_Quit();
+            
+
+    return;
+            
+}
