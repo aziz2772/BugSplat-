@@ -1,0 +1,318 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_image.h>
+#include "fonction.h"
+
+void main()
+
+{
+
+
+    SDL_Surface *ecran = NULL, *image = NULL, *play = NULL,*option = NULL,*credit = NULL,*quit = NULL,*cape1 = NULL,*cape2 = NULL;
+
+  int k=0;
+
+Mix_Music* backgroundSound = NULL ;
+
+Mix_Chunk* boutton;
+
+Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024);
+backgroundSound = Mix_LoadMUS("musika.mp3");
+boutton=Mix_LoadWAV("boutton.wav");
+
+    SDL_Rect positionFond,positionClic,positionoption,positioncredit,positionquit,positioncape,positioncape2;
+
+    positionFond.x = 0;
+    positionFond.y = 0;
+
+positionClic.x=640;
+positionClic.y=150;
+
+positionoption.x=640;
+positionoption.y=220;
+
+positioncredit.x=640;
+positioncredit.y=290;
+
+positionquit.x=640;
+positionquit.y=360;
+
+positioncape2.x=80;
+positioncape2.y=265;
+
+positioncape.x=73;
+positioncape.y=265;
+
+ ecran = SDL_SetVideoMode(920, 644, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+;
+image= IMG_Load("sscape.png");
+option= IMG_Load("option 1.png");
+play= IMG_Load("play 2.png");
+credit=IMG_Load("credit 1.png");
+quit=IMG_Load("quit 1.png");
+
+
+
+
+SDL_BlitSurface(image, NULL, ecran, &positionFond);
+
+SDL_BlitSurface(play, NULL, ecran, &positionClic);
+SDL_BlitSurface(option, NULL, ecran, &positionoption);
+SDL_BlitSurface(credit, NULL, ecran, &positioncredit);
+SDL_BlitSurface(quit, NULL, ecran, &positionquit);
+
+        SDL_Flip(ecran);
+
+    SDL_Init(SDL_INIT_EVERYTHING);
+
+    
+   // ecran = SDL_SetVideoMode(900, 644, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+
+
+    int i=1,x=1,test=1;
+
+    int continuer = 1;
+    //bool done;
+    SDL_Event event;
+SDL_Event event2;
+Mix_PlayMusic(backgroundSound,-1);
+   
+    while (continuer)
+    {
+test=1;
+
+while(test){
+        x=0;
+        SDL_WaitEvent(&event);
+switch(event.type)
+        {
+        case SDL_QUIT:
+            continuer = 0;
+test=0;
+            break;
+ case SDL_KEYDOWN:
+
+            switch(event.key.keysym.sym)
+
+            {
+
+            case SDLK_UP:
+Mix_PlayChannel(-1,boutton,0);
+                if (i==1)
+                    i=4;
+
+                else
+
+
+                    i--;
+                break;
+
+            case SDLK_DOWN:
+Mix_PlayChannel(-1,boutton,0);
+
+                if(i==4)
+                    i=1;
+
+                else
+
+
+
+                    i++;
+                break;
+  case SDLK_RETURN:
+Mix_PlayChannel(-1,boutton,0);
+                if(i==1)
+                {
+                    x=1;
+                }
+                if(i==2)
+                {
+                    x=2;
+                }
+                if(i==3)
+                {
+
+                    x=3;
+
+                }
+                if(i==4)
+                {
+                    x=4;
+                }
+
+                break;
+            }
+
+            
+
+
+ 
+
+
+
+        if(i==1)
+        {
+            play= IMG_Load("play 2.png");
+option= IMG_Load("option 1.png");
+quit = IMG_Load("quit 1.png");
+credit = IMG_Load("credit 1.png");
+
+        }
+
+        if(i==2)
+        {
+play= IMG_Load("play 1.png");
+
+quit = IMG_Load("quit 1.png");
+credit = IMG_Load("credit 1.png");
+            option= IMG_Load("option 2.png");
+
+        }
+        if(i==4)
+        {
+play= IMG_Load("play 1.png");
+
+
+credit = IMG_Load("credit 1.png");
+            option= IMG_Load("option 1.png");
+            quit = IMG_Load("quit 2.png");
+
+        }
+        if(i==3)
+        {
+play= IMG_Load("play 1.png");
+
+
+
+            option= IMG_Load("option 1.png");
+            quit = IMG_Load("quit 1.png");
+
+            credit = IMG_Load("credit 2.png");
+
+
+        }
+
+
+
+
+        //les images des boutons
+
+        
+
+        SDL_BlitSurface(image, NULL, ecran, &positionFond);
+SDL_BlitSurface(play, NULL, ecran, &positionClic);
+SDL_BlitSurface(option, NULL, ecran, &positionoption);
+SDL_BlitSurface(credit, NULL, ecran, &positioncredit);
+SDL_BlitSurface(quit, NULL, ecran, &positionquit);
+//
+
+        SDL_Flip(ecran);
+
+
+        //aprés apuis des boutons
+
+ switch(x)
+        {
+        case 1:
+
+switch(event2.type){
+case SDL_QUIT:
+            continuer = 0;
+test=0;
+            break;
+switch(event.key.keysym.sym){
+case SDL_KEYUP:
+if ( event2.key.keysym.sym == SDLK_ESCAPE ) // C'est la touche Échap
+            {
+                test=0;
+            }
+
+            break;
+case SDLK_UP:
+Mix_PlayChannel(-1,boutton,0);
+                if (k==1)
+                    k=3;
+
+                else
+
+
+                    k--;
+                break;
+
+            case SDLK_DOWN:
+Mix_PlayChannel(-1,boutton,0);
+
+                if(k==3)
+                    k=1;
+
+                else
+
+
+
+                    k++;
+                break;
+}
+
+if(k==1)
+        {
+           play= IMG_Load("new2.png");
+option= IMG_Load("continue 1.png");
+credit = IMG_Load("loadlvl 1.png"); 
+quit = IMG_Load("vide.png");
+
+
+        }
+}
+                 
+SDL_BlitSurface(image, NULL, ecran, &positionFond);
+SDL_BlitSurface(play, NULL, ecran, &positionClic);
+SDL_BlitSurface(credit, NULL, ecran, &positioncredit);
+SDL_BlitSurface(quit, NULL, ecran, &positionquit);
+SDL_BlitSurface(option, NULL, ecran, &positionoption);
+
+
+    
+           
+        case 2:
+                    //Mix_PlayChannel(-1,button,0);
+                    //options(ecran);
+           
+            break;
+        case 3:
+                    //Mix_PlayChannel(-1,button,0);
+                    //Help(ecran);
+                         
+
+            break;
+        case 4:
+                    //Mix_PlayChannel(-1,button,0);
+                    continuer=0;
+            break;
+        }
+
+        }
+
+        
+        }
+Mix_FreeChunk(boutton);
+Mix_FreeMusic(backgroundSound);
+Mix_CloseAudio();
+    SDL_FreeSurface(image);
+    SDL_FreeSurface(play);
+SDL_FreeSurface(option);
+  SDL_FreeSurface(credit);
+ SDL_FreeSurface(quit);
+SDL_FreeSurface(cape1);
+
+   
+   
+    
+  
+    SDL_Quit();
+            
+
+    return;
+            
+}
