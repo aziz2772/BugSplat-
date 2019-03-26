@@ -1,0 +1,19 @@
+
+#include "menu2.h"
+
+
+void main()
+
+{
+SDL_Surface *ecran =NULL, *cape =NULL;
+menu1(ecran);
+
+
+
+
+    SDL_Quit();
+
+
+    return;
+
+}
