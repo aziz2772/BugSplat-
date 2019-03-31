@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+int main()
+{
+    int minute , seconde , heure;
+    printf("combien d'heure voulez vous dans votre compte %c rebour\n",133);
+    scanf("%d",&heure);
+     printf("combien de minute voulez vous dans votre compte %c rebour\n",133);
+    scanf("%d",&minute);
+     printf("combien de seconde voulez vous dans votre compte %c rebour\n",133);
+    scanf("%d",&seconde);
+
+    while(seconde >= 0 && heure>=0 && minute>=0)
+    {printf("%2d-%2d-%2d\b\b\b\b\b\b\b\b", heure,minute,seconde);
+
+        if (seconde >= 0)
+        {
+           Sleep(1000);
+        }
+ if(minute==0&&heure !=0)
+        {
+        minute+=60;
+        heure--;
+        }
+        if ((seconde==0)&&(minute!=0||heure!=0))
+        {seconde+=60;
+        minute--;}
+
+seconde--;
+    }
+    return 0;
+}
+

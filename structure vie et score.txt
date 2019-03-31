@@ -1,0 +1,14 @@
+typedef struct 
+{
+int pos_vie;
+SDL_Surface *tab[3];
+int i;
+}vie;
+typedef struct 
+{
+int pos_score;
+int score;
+}score;
+//to nzid fonction taa el score
+void initvie(void);
+void drawvie(void); 
